@@ -1,3 +1,4 @@
+const logger = require("../logger");
 const connectToDatabase = require("../models/db");
 const express = require("express");
 const router = express.Router();
@@ -12,8 +13,8 @@ router.get("/", async (req, res) => {
 
     res.json(gifts);
   } catch (e) {
-    console.error("Error fetching gifts:", e);
-    res.status(500).send("Error fetching gifts");
+    logger.error("Error fetching gifts:", e);
+    next(e);
   }
 });
 
@@ -33,8 +34,7 @@ router.get("/:id", async (req, res) => {
 
     res.json(gift);
   } catch (e) {
-    console.error("Error fetching gift:", e);
-    res.status(500).send("Error fetching gift");
+    next(e);
   }
 });
 
