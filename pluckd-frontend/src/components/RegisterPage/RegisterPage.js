@@ -62,88 +62,91 @@ function RegisterPage() {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6 col-lg-4">
-          <div className="register-card p-4 border rounded">
-            <h2 className="text-center mb-4 font-weight-bold">Register</h2>
-            <div className="mb-3">
-              <label htmlFor="firstName" className="form-label">
-                FirstName
+    <>
+     
+
+      <div className="pluckd-register-container">
+        <div className="pluckd-leaf-decoration">🍃</div>
+        <div className="pluckd-leaf-decoration">🌿</div>
+        
+        <div className="pluckd-register-card">
+          <h2 className="pluckd-register-title">Register</h2>
+          
+          <div className="pluckd-form-row">
+            <div className="pluckd-form-group half-width">
+              <label htmlFor="firstName" className="pluckd-form-label">
+                First Name
               </label>
               <input
                 id="firstName"
                 type="text"
-                className="form-control"
-                placeholder="Enter your firstName"
+                className="pluckd-form-input"
+                placeholder="Enter your first name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
             </div>
 
-            {/* last name */}
-
-            <div className="mb-3">
-              <label htmlFor="lastName" className="form-label">
-                LastName
+            <div className="pluckd-form-group half-width">
+              <label htmlFor="lastName" className="pluckd-form-label">
+                Last Name
               </label>
               <input
                 id="lastName"
                 type="text"
-                className="form-control"
-                placeholder="Enter your lastName"
+                className="pluckd-form-input"
+                placeholder="Enter your last name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
             </div>
-
-            {/* email  */}
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Email
-              </label>
-              <input
-                id="email"
-                type="text"
-                className="form-control"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              {/* Step 2 - Task 6*/}
-
-              <div className="text-danger">{showerr}</div>
-            </div>
-
-            <div className="mb-4">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                className="form-control"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <button
-              className="btn btn-primary w-100 mb-3"
-              onClick={handleRegister}
-            >
-              Register
-            </button>
-            <p className="mt-4 text-center">
-              Already a member?{" "}
-              <a href="/app/login" className="text-primary">
-                Login
-              </a>
-            </p>
           </div>
+
+          <div className="pluckd-form-group">
+            <label htmlFor="email" className="pluckd-form-label">
+              Email
+            </label>
+            <input
+              id="email"
+              type="text"
+              className="pluckd-form-input"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {showerr && <div className="pluckd-error-message">{showerr}</div>}
+          </div>
+
+          <div className="pluckd-form-group">
+            <label htmlFor="password" className="pluckd-form-label">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              className="pluckd-form-input"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          
+          <button
+            className="pluckd-register-btn"
+            onClick={handleRegister}
+          >
+            Register
+          </button>
+          
+          <p className="pluckd-login-link">
+            Already a member?{" "}
+            <a href="/app/login">
+              Login
+            </a>
+          </p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

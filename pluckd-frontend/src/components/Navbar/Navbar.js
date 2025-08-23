@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { urlConfig } from "../../config";
 import { useAppContext } from "../../context/AuthContext";
+import "./Navbar.css"
 
 export default function Navbar() {
   const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAppContext();
@@ -33,86 +34,76 @@ export default function Navbar() {
   };
   return (
     <>
-      <nav
-        className="navbar navbar-expand-lg navbar-light bg-light"
-        id="navbar_container"
-      >
-        <a className="navbar-brand" href={`${urlConfig.backendUrl}/app`}>
-          GiftLink
-        </a>
+     
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+      <nav className="pluckd-navbar" id="navbar_container">
+        <div className="pluckd-navbar-container">
+          <strong className="pluckd-brand">PluckD</strong>
 
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNav"
-        >
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/home.html">
-                Home
-              </a>{" "}
-              {/* Link to home.html */}
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/app">
-                Gifts
-              </Link>{" "}
-              {/* Updated Link */}
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/app/search">
-                Search
-              </Link>
-            </li>
-            <ul className="navbar-nav ml-auto">
+          <button
+            className="pluckd-navbar-toggle"
+            type="button"
+            onClick={() => {
+              const navContent = document.querySelector(".pluckd-nav-content");
+              navContent.classList.toggle("show");
+            }}
+            aria-label="Toggle navigation"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <div className="pluckd-nav-content" id="navbarNav">
+            <ul className="pluckd-nav-links">
+              <li className="pluckd-nav-item">
+                <a className="pluckd-nav-link" href="/home.html">
+                  Home
+                </a>
+              </li>
+              <li className="pluckd-nav-item">
+                <Link className="pluckd-nav-link" to="/app">
+                  Gifts
+                </Link>
+              </li>
+              <li className="pluckd-nav-item">
+                <Link className="pluckd-nav-link" to="/app/search">
+                  Search
+                </Link>
+              </li>
+            </ul>
+
+            <div className="pluckd-user-section">
               {isLoggedIn ? (
                 <>
-                  <li className="nav-item">
-                    {" "}
-                    <span
-                      className="nav-link"
-                      style={{ color: "black", cursor: "pointer" }}
-                      onClick={profileSection}
-                    >
-                      Welcome, {userName}
-                    </span>{" "}
-                  </li>
-                  <li className="nav-item">
-                    <button
-                      className="nav-link login-btn"
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </button>
-                  </li>
+                  <span className="pluckd-welcome" onClick={profileSection}>
+                    Welcome, {userName}
+                  </span>
+                  <button
+                    className="pluckd-nav-link pluckd-login-btn"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
-                    <Link className="nav-link login-btn" to="/app/login">
-                      Login
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link register-btn" to="/app/register">
-                      Register
-                    </Link>
-                  </li>
+                  <Link
+                    className="pluckd-nav-link pluckd-login-btn"
+                    to="/app/login"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    className="pluckd-nav-link pluckd-register-btn"
+                    to="/app/register"
+                  >
+                    Register
+                  </Link>
                 </>
               )}
-            </ul>
-          </ul>
+            </div>
+          </div>
         </div>
       </nav>
     </>

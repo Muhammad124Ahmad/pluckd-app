@@ -1,44 +1,445 @@
-.login-card {
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&family=Comfortaa:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&display=swap");
+
+.pluckd-login-container {
+  background: linear-gradient(135deg, #faf8f5 0%, #f5f2ef 50%, #fdf7f3 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  font-family: "Nunito", sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
 
-.login-card .form-label {
-    font-weight: 600;
+.pluckd-login-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+                /* Flower centers */ radial-gradient(
+      circle at 15% 20%,
+      #e8a5a5 2px,
+      transparent 3px
+    ),
+    radial-gradient(circle at 85% 10%, #f2b5b5 1.5px, transparent 2.5px),
+    radial-gradient(circle at 25% 70%, #e8a5a5 2px, transparent 3px),
+    radial-gradient(circle at 75% 80%, #e4c0c0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 45% 40%, #e8a5a5 2px, transparent 3px),
+    radial-gradient(circle at 90% 60%, #f2b5b5 1.5px, transparent 2.5px),
+    radial-gradient(circle at 10% 90%, #e8a5a5 2px, transparent 3px),
+    radial-gradient(circle at 60% 15%, #e4c0c0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 35% 85%, #e8a5a5 1.5px, transparent 2.5px),
+    radial-gradient(circle at 70% 35%, #f2b5b5 2px, transparent 3px),
+    /* Petal layers */
+      radial-gradient(
+        ellipse 8px 4px at 15% 18%,
+        rgba(232, 165, 165, 0.4),
+        transparent
+      ),
+    radial-gradient(
+      ellipse 4px 8px at 17% 22%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 6px 3px at 13% 20%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 3px 6px at 15% 24%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 8px 4px at 85% 8%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 4px 8px at 87% 12%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 6px 3px at 83% 10%,
+      rgba(228, 192, 192, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 3px 6px at 85% 14%,
+      rgba(228, 192, 192, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 8px 4px at 25% 68%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 4px 8px at 27% 72%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 6px 3px at 23% 70%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 3px 6px at 25% 74%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 8px 4px at 75% 78%,
+      rgba(228, 192, 192, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 4px 8px at 77% 82%,
+      rgba(228, 192, 192, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 6px 3px at 73% 80%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 3px 6px at 75% 84%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 8px 4px at 45% 38%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 4px 8px at 47% 42%,
+      rgba(232, 165, 165, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 6px 3px at 43% 40%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 3px 6px at 45% 44%,
+      rgba(242, 181, 181, 0.4),
+      transparent
+    );
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: -1;
+  animation: pluckd-float-flowers 60s ease-in-out infinite;
 }
 
-.login-card input {
-    border-radius: 0.25rem;
+.pluckd-login-container::after {
+  content: "🌸";
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  font-size: 2rem;
+  opacity: 0.1;
+  animation: pluckd-gentle-sway 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.login-card .btn {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+@keyframes pluckd-float-flowers {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(0.5deg);
+  }
 }
 
-.login-card .btn-primary {
-    background-color: #0056b3;
-    border: none;
+@keyframes pluckd-gentle-sway {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  25% {
+    transform: rotate(2deg) translateY(-5px);
+  }
+  50% {
+    transform: rotate(-1deg) translateY(-3px);
+  }
+  75% {
+    transform: rotate(1deg) translateY(-7px);
+  }
 }
 
-.login-card .btn-secondary {
-    background-color: #dc3545;
-    border: none;
+.pluckd-login-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(253, 251, 248, 0.9)
+  );
+  border: 1px solid rgba(196, 164, 132, 0.2);
+  border-radius: 30px;
+  box-shadow: 0 12px 40px rgba(90, 64, 55, 0.1);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 420px;
+  backdrop-filter: blur(20px);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
 }
 
-.login-card .text-primary {
-    color: #0056b3;
+.pluckd-login-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(90, 64, 55, 0.15);
+  border-color: rgba(232, 165, 165, 0.3);
 }
 
-.login-card .text-secondary {
-    color: #6c757d;
+.pluckd-login-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e8a5a5, #d4af9a, #c4a484);
+  border-radius: 30px 30px 0 0;
+  opacity: 0.8;
 }
 
-/* Additional styles */
-a.text-primary:hover {
-    text-decoration: underline;
+.pluckd-login-title {
+  font-family: "Comfortaa", serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #5a4037;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 0.5px;
+  position: relative;
 }
 
-a.text-secondary:hover {
-    text-decoration: underline;
+.pluckd-login-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #e8a5a5, #d4af9a);
+  border-radius: 2px;
+}
+
+.pluckd-form-group {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.pluckd-form-label {
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #8b6f47;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.3px;
+}
+
+.pluckd-form-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid rgba(196, 164, 132, 0.3);
+  border-radius: 25px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  color: #5a4037;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(250, 248, 245, 0.9)
+  );
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  outline: none;
+  letter-spacing: 0.3px;
+}
+
+.pluckd-form-input::placeholder {
+  color: rgba(139, 111, 71, 0.6);
+  font-style: italic;
+}
+
+.pluckd-form-input:focus {
+  border-color: #e8a5a5;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(253, 251, 248, 0.95)
+  );
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 8px 25px rgba(232, 165, 165, 0.2);
+  border-radius: 20px;
+}
+
+.pluckd-error-message {
+  color: #d63384;
+  font-family: "Nunito", sans-serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  font-weight: 500;
+  height: 20px;
+  display: block;
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+  animation: pluckd-shake 0.5s ease-in-out;
+}
+
+@keyframes pluckd-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.pluckd-login-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #c4a484, #d4af9a);
+  color: white;
+  font-family: "Nunito", sans-serif;
+  padding: 16px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(196, 164, 132, 0.3);
+  margin-bottom: 24px;
+  transform-origin: center;
+}
+
+.pluckd-login-btn:hover {
+  background: linear-gradient(135deg, #b8956f, #c4a484);
+  transform: translateY(-3px) scale(1.02) rotate(-0.5deg);
+  box-shadow: 0 10px 30px rgba(196, 164, 132, 0.4);
+  border-radius: 25px;
+}
+
+.pluckd-login-btn:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 4px 15px rgba(196, 164, 132, 0.3);
+}
+
+.pluckd-register-link {
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.95rem;
+  color: #8b6f47;
+  margin-top: 20px;
+  letter-spacing: 0.3px;
+}
+
+.pluckd-register-link a {
+  color: #e8a5a5;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pluckd-register-link a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e8a5a5, #f2b5b5);
+  transition: width 0.3s ease;
+}
+
+.pluckd-register-link a:hover {
+  color: #d4898a;
+  text-decoration: none;
+}
+
+.pluckd-register-link a:hover::after {
+  width: 100%;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .pluckd-login-container {
+    padding: 20px 15px;
+  }
+
+  .pluckd-login-card {
+    padding: 32px 24px;
+    margin: 0 10px;
+    border-radius: 25px;
+  }
+
+  .pluckd-login-title {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+  }
+
+  .pluckd-form-group {
+    margin-bottom: 20px;
+  }
+
+  .pluckd-form-input {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+
+  .pluckd-login-btn {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pluckd-login-card {
+    padding: 24px 20px;
+  }
+
+  .pluckd-login-title {
+    font-size: 1.6rem;
+  }
+}
+
+/* Loading state */
+.pluckd-login-btn.loading {
+  background: linear-gradient(
+    135deg,
+    rgba(196, 164, 132, 0.7),
+    rgba(212, 175, 154, 0.7)
+  );
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pluckd-login-btn.loading:hover {
+  transform: none;
 }
