@@ -1,0 +1,51 @@
+/* Background with subtle cream tone */
+.themed-navbar {
+  background-color: #fffdd0; /* soft cream */
+  border-bottom: 1px solid rgba(147, 197, 114, 0.25); /* pistachio border */
+  padding: 0.8rem 1.5rem;
+}
+
+/* Brand text */
+.brand-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #2e2e2e !important;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.brand-text:hover {
+  color: #93c572 !important; /* pistachio on hover */
+}
+
+/* Nav Links */
+.nav-link-custom {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: #444 !important;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 0.4rem 0.9rem;
+}
+
+.nav-link-custom:hover {
+  background-color: #f8bbd0; /* soft pink background */
+  color: #fff !important;
+}
+
+/* Active state (optional if you add NavLink) */
+.nav-link-custom.active {
+  background-color: #93c572;
+  color: #fff !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 991px) {
+  .nav-link-custom {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    display: block;
+  }
+}
