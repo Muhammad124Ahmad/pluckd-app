@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import DetailsPage from "./components/DetailsPage/DetailsPage";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/app/register" element={<RegisterPage />} />
         <Route path="/app/product/:productId" element={<DetailsPage />}></Route>
         <Route path="/app/search" element={<SearchPage />}></Route>
+        <Route path="/app/profile" element={<Profile></Profile>}></Route>
       </Routes>
     </>
   );

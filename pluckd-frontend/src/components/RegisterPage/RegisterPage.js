@@ -56,22 +56,33 @@ function RegisterPage() {
       navigate("/app");
     }
     if (json.error) {
-      //Step 2 - Task 5
       setShowerr(json.error);
+    }
+    if (json.errors) {
+      if (json.errors[0]) {
+        if (json.errors[0]["path"] === "password") {
+          setShowerr("Lenght of password should be atleast 6 digits");
+        } else if (
+          json.errors[0]["path"] === "firstName" ||
+          json.errors[0]["path"] === "lastName"
+        ) {
+          setShowerr("Name field should not be empty");
+        } else {
+          setShowerr(`${json.errors[0]["msg"]} of ${json.errors[0]["path"]}`);
+        }
+      }
     }
   };
 
   return (
     <>
-     
-
       <div className="pluckd-register-container">
         <div className="pluckd-leaf-decoration">🍃</div>
         <div className="pluckd-leaf-decoration">🌿</div>
-        
+
         <div className="pluckd-register-card">
           <h2 className="pluckd-register-title">Register</h2>
-          
+
           <div className="pluckd-form-row">
             <div className="pluckd-form-group half-width">
               <label htmlFor="firstName" className="pluckd-form-label">
@@ -130,19 +141,13 @@ function RegisterPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          
-          <button
-            className="pluckd-register-btn"
-            onClick={handleRegister}
-          >
+
+          <button className="pluckd-register-btn" onClick={handleRegister}>
             Register
           </button>
-          
+
           <p className="pluckd-login-link">
-            Already a member?{" "}
-            <a href="/app/login">
-              Login
-            </a>
+            Already a member? <a href="/app/login">Login</a>
           </p>
         </div>
       </div>
