@@ -4,6 +4,7 @@ import "./DetailsPage.css";
 import { urlConfig } from "../../config";
 import { useAppContext } from "../../context/AuthContext";
 
+
 function DetailsPage() {
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -92,6 +93,24 @@ function DetailsPage() {
     }
   };
 
+  const handleDelete = async (commentId) => {
+    try {
+      const url = `${urlConfig.backendUrl}/api/comment/delete/${commentId}`;
+      const response = await fetch(url, { method: "DELETE" });
+      if (!response.ok) {
+        console.log("Could not Delete");
+      }
+
+      setComments((prev) =>
+        prev.filter((comment) => comment._id !== commentId)
+      );
+    } catch (error) {
+      throw new Error ("Internal Error-in deleting comment")
+    }
+  };
+
+
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!gift) return <div>Gift not found</div>;
@@ -152,6 +171,13 @@ function DetailsPage() {
               </p>
               <p className="comment-text">{comment.comment}</p>
             </div>
+            {comment.userName === userName ? (
+              <>
+                <button className="btn btn-danger" onClick={()=>(handleDelete(comment._id))}>Delete</button>
+              </>
+            ) : (
+              ""
+            )}
           </div>
         ))}
         <label htmlFor="addComment"></label>
