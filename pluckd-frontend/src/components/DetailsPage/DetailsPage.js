@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, json } from "react-router-dom";
 import "./DetailsPage.css";
 import { urlConfig } from "../../config";
+import { useAppContext } from "../../context/AuthContext";
 
 function DetailsPage() {
   const navigate = useNavigate();
@@ -9,6 +10,10 @@ function DetailsPage() {
   const [gift, setGift] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [writtenComment, setWrittenComment] = useState("");
+  const [commentErr, setCommentErr] = useState("");
+  const { userName } = useAppContext();
 
   useEffect(() => {
     const authenticationToken = sessionStorage.getItem("auth-token");
@@ -37,39 +42,55 @@ function DetailsPage() {
 
     fetchGift();
 
-    // Task 3: Scroll to top on component mount
+    async function fetchComments() {
+      const commentURL = `${urlConfig.backendUrl}/api/comment/`;
+      const response = await fetch(commentURL);
+      if (!response.ok) {
+        throw new Error("Unable to fetch Comments");
+      }
+      const data = await response.json();
+      setComments(data);
+    }
+    fetchComments();
+
     window.scrollTo(0, 0);
   }, [productId, navigate]);
 
   const handleBackClick = () => {
-    // Task 4: Handle back click
     navigate(-1);
   };
 
-  //The comments have been hardcoded for this project.
-  const comments = [
-    {
-      author: "John Doe",
-      comment: "I would like this!",
-    },
-    {
-      author: "Jane Smith",
-      comment: "Just DMed you.",
-    },
-    {
-      author: "Alice Johnson",
-      comment: "I will take it if it's still available.",
-    },
-    {
-      author: "Mike Brown",
-      comment: "This is a good one!",
-    },
-    {
-      author: "Sarah Wilson",
-      comment:
-        "My family can use one. DM me if it is still available. Thank you!",
-    },
-  ];
+  const handleComment = async () => {
+    try {
+      const commentURL = `${urlConfig.backendUrl}/api/comment/`;
+      const response = await fetch(commentURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName: userName,
+          comment: writtenComment,
+        }),
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        // Validation error case
+        if (Array.isArray(json.error) && json.error.length > 0) {
+          setCommentErr("Comment must not be empty"); // e.g. "Invalid value"
+        } else {
+          setCommentErr("Something went wrong");
+        }
+        return;
+      }
+
+      setComments((prev) => [...prev, { userName, comment: writtenComment }]);
+      setWrittenComment("");
+      setCommentErr(null);
+    } catch (error) {
+      setCommentErr("Something went wrong, could not add comment");
+    }
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -127,12 +148,26 @@ function DetailsPage() {
           <div key={index} className="card mb-3">
             <div className="card-body">
               <p className="comment-author">
-                <strong>{comment.author}:</strong>
+                <strong>{comment.userName}:</strong>
               </p>
               <p className="comment-text">{comment.comment}</p>
             </div>
           </div>
         ))}
+        <label htmlFor="addComment"></label>
+        <input
+          type="text"
+          name="comment"
+          id="addComment"
+          value={writtenComment}
+          onChange={(e) => {
+            setWrittenComment(e.target.value);
+          }}
+        />
+        <button className="btn btn-primary" onClick={handleComment}>
+          Add Comment
+        </button>
+        <span>{commentErr}</span>
       </div>
     </div>
   );

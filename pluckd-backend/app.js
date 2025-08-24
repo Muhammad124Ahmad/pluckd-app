@@ -6,6 +6,7 @@ const pinoLogger = require("./logger");
 const giftroutes = require("./routes/giftRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const authRoutes = require("./routes/authRoutes");
+const commentRoutes = require("./routes/commentRoutes");
 const connectToDatabase = require("./models/db");
 const { loadData } = require("./util/import-mongo/index");
 
@@ -22,6 +23,9 @@ app.use("/api/search", searchRoutes);
 
 //adding auth endpoint
 app.use("/api/auth", authRoutes);
+
+//adding comment endpoint
+app.use("/api/comment", commentRoutes);
 
 // Connect to MongoDB; we just do this one time
 connectToDatabase()
