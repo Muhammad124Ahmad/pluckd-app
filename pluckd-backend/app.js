@@ -5,22 +5,23 @@ const cors = require("cors");
 const pinoLogger = require("./logger");
 const giftroutes = require("./routes/giftRoutes");
 const searchRoutes = require("./routes/searchRoutes");
-const authRoutes=require('./routes/authRoutes')
+const authRoutes = require("./routes/authRoutes");
 const connectToDatabase = require("./models/db");
 const { loadData } = require("./util/import-mongo/index");
 
 const app = express();
-app.use("*", cors());
+app.use(cors());
+app.use(express.json());
 const port = 3060;
 
 //adding gift route
 app.use("/api/gifts", giftroutes);
 
 //adding search routes
-app.use("api/search", searchRoutes);
+app.use("/api/search", searchRoutes);
 
 //adding auth endpoint
-app.use("api/auth",authRoutes);
+app.use("/api/auth", authRoutes);
 
 // Connect to MongoDB; we just do this one time
 connectToDatabase()
@@ -45,8 +46,6 @@ app.use((err, req, res, next) => {
 app.get("/", (req, res) => {
   res.send("Inside the server");
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
