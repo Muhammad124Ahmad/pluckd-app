@@ -4,7 +4,6 @@ import "./DetailsPage.css";
 import { urlConfig } from "../../config";
 import { useAppContext } from "../../context/AuthContext";
 
-
 function DetailsPage() {
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -70,6 +69,7 @@ function DetailsPage() {
         body: JSON.stringify({
           userName: userName,
           comment: writtenComment,
+          productId: productId,
         }),
       });
 
@@ -85,7 +85,15 @@ function DetailsPage() {
         return;
       }
 
-      setComments((prev) => [...prev, { userName, comment: writtenComment }]);
+      setComments((prev) => [
+        ...prev,
+        {
+          _id: json._id,
+          userName,
+          comment: writtenComment,
+          productId: productId,
+        },
+      ]);
       setWrittenComment("");
       setCommentErr(null);
     } catch (error) {
@@ -105,11 +113,9 @@ function DetailsPage() {
         prev.filter((comment) => comment._id !== commentId)
       );
     } catch (error) {
-      throw new Error ("Internal Error-in deleting comment")
+      throw new Error("Internal Error-in deleting comment");
     }
   };
-
-
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -162,24 +168,33 @@ function DetailsPage() {
       </div>
       <div className="comments-section mt-4">
         <h3 className="mb-3">Comments</h3>
-        {/* Task 7: Render comments section */}
-        {comments.map((comment, index) => (
-          <div key={index} className="card mb-3">
-            <div className="card-body">
-              <p className="comment-author">
-                <strong>{comment.userName}:</strong>
-              </p>
-              <p className="comment-text">{comment.comment}</p>
+
+        {comments.map((comment, index) =>
+          comment.productId === productId ? (
+            <div key={index} className="card mb-3">
+              <div className="card-body">
+                <p className="comment-author">
+                  <strong>{comment.userName}:</strong>
+                </p>
+                <p className="comment-text">{comment.comment}</p>
+              </div>
+              {comment.userName === userName ? (
+                <>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(comment._id)}
+                  >
+                    Delete
+                  </button>
+                </>
+              ) : (
+                ""
+              )}
             </div>
-            {comment.userName === userName ? (
-              <>
-                <button className="btn btn-danger" onClick={()=>(handleDelete(comment._id))}>Delete</button>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
-        ))}
+          ) : (
+            ""
+          )
+        )}
         <label htmlFor="addComment"></label>
         <input
           type="text"
