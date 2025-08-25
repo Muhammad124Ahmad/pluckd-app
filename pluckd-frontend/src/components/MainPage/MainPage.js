@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlConfig } from "../../config";
+import { useAppContext } from "../../context/AuthContext";
 
 function MainPage() {
   const [gifts, setGifts] = useState([]);
   const navigate = useNavigate();
+  const { userName } = useAppContext();
 
   useEffect(() => {
     const fetchGifts = async () => {
@@ -34,6 +36,24 @@ function MainPage() {
     return condition === "New"
       ? "pluckd-condition-new"
       : "pluckd-condition-used";
+  };
+  const handleDelete = async (productId) => {
+    try {
+      const url = `${urlConfig.backendUrl}/api/gifts/delete/${productId}`;
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        return console.log("Deletion failed(gift-not-found)");
+      }
+
+      console.log("Successfully Deleted");
+      setGifts((prev) => prev.filter((product) => product._id !== productId));
+      return;
+    } catch (error) {
+      console.log("Gift Del Error", Error);
+    }
   };
 
   return (
@@ -328,6 +348,20 @@ function MainPage() {
                   >
                     View Details
                   </button>
+                  {gift.userName ? (
+                    gift.userName === userName ? (
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(gift._id)}
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      ""
+                    )
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             ))}

@@ -12,6 +12,7 @@ function AddGift() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
+  const { userName } = useAppContext();
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -23,6 +24,7 @@ function AddGift() {
     formData.append("age", age);
     formData.append("description", description);
     formData.append("image", image);
+    formData.append("userName", userName);
 
     const url = `${urlConfig.backendUrl}/api/gifts/`;
     try {
@@ -61,6 +63,7 @@ function AddGift() {
         id="category"
         name="category"
         className="form-control mb-3"
+        defaultValue={"Office"}
         onChange={(e) => setCategory(e.target.value)}
         required
       >
@@ -77,6 +80,7 @@ function AddGift() {
         id="condition"
         name="condition"
         className="form-control mb-3"
+        defaultValue={"New"}
         onChange={(e) => setCondition(e.target.value)}
         required
       >
