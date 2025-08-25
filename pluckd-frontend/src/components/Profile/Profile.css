@@ -1,65 +1,424 @@
-/* Add this CSS to your existing styles or create a new CSS file */
+/* PluckD Profile Page Styles */
 
-.profile-container {
-    max-width: 400px;
-    margin: 15% auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
+:root {
+  --pistachio: #a8c090;
+  --cream: #f7f5f0;
+  --soft-pink: #e8d5d0;
+  --dark-green: #7a9b6b;
+  --text-dark: #3a3a3a;
+  --text-light: #6b6b6b;
+}
+
+.pluckd-profile-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--cream) 0%, #f9f7f4 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: "Nunito", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 2rem 0;
+}
+
+/* Subtle texture overlay */
+.pluckd-profile-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      circle at 20% 80%,
+      rgba(168, 192, 144, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(232, 213, 208, 0.03) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Decorative floral elements */
+.floral-accent {
+  position: absolute;
+  opacity: 0.35;
+  pointer-events: none;
+  color: #8b0000;
+  z-index: 2;
+}
+
+.floral-top-left {
+  top: 8%;
+  left: 5%;
+  transform: rotate(-15deg);
+}
+
+.floral-bottom-right {
+  bottom: 10%;
+  right: 8%;
+  transform: rotate(25deg);
+}
+
+.floral-mid-left {
+  top: 55%;
+  left: 3%;
+  transform: rotate(-45deg);
+}
+
+/* Decorative dots */
+.decorative-dots {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--soft-pink);
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.dot-1 {
+  top: 20%;
+  right: 25%;
+}
+.dot-2 {
+  top: 70%;
+  left: 20%;
+}
+.dot-3 {
+  bottom: 25%;
+  right: 15%;
+}
+
+/* Container */
+.pluckd-profile-container {
+  position: relative;
+  z-index: 3;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Profile Card */
+.pluckd-profile-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(168, 192, 144, 0.2);
+  border: 1px solid rgba(168, 192, 144, 0.15);
+}
+
+.pluckd-card-header {
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.pluckd-card-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  clip-path: ellipse(100% 100% at 50% 0%);
+}
+
+/* Profile Avatar */
+.pluckd-profile-avatar {
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+/* Titles */
+.pluckd-welcome-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.pluckd-profile-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.pluckd-profile-subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* Profile Details */
+.pluckd-profile-details {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pluckd-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: var(--cream);
+  border-radius: 16px;
+  border: 1px solid rgba(168, 192, 144, 0.2);
+  transition: all 0.3s ease;
+}
+
+.pluckd-detail-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 192, 144, 0.15);
+}
+
+.pluckd-detail-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--dark-green);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pluckd-detail-value {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  font-weight: 400;
+  margin-left: 1.75rem;
+}
+
+/* Success Message */
+.pluckd-success-message {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #d4edda;
+  color: #155724;
+  padding: 1rem 1.5rem;
+  margin: 0 2rem;
+  border-radius: 12px;
+  border: 1px solid #c3e6cb;
+  font-weight: 500;
+  font-size: 0.95rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .profile-container h1 {
-    margin-top: 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .profile-container form {
-    margin-bottom: 20px;
+}
+
+/* Profile Actions */
+.pluckd-profile-actions {
+  padding: 2rem;
+  border-top: 1px solid rgba(168, 192, 144, 0.2);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Form Styles */
+.pluckd-profile-form {
+  padding: 2.5rem 2rem;
+}
+
+.pluckd-form-group {
+  margin-bottom: 2rem;
+}
+
+.pluckd-form-label {
+  display: block;
+  font-weight: 500;
+  color: var(--dark-green);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.pluckd-form-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--soft-pink);
+  border-radius: 16px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  background: white;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.pluckd-form-input:focus {
+  outline: none;
+  border-color: var(--pistachio);
+  box-shadow: 0 0 0 3px rgba(168, 192, 144, 0.1);
+  transform: translateY(-1px);
+}
+
+.pluckd-form-input::placeholder {
+  color: var(--text-light);
+}
+
+.pluckd-input-disabled {
+  background: #f8f9fa;
+  color: var(--text-light);
+  cursor: not-allowed;
+  border-color: #e9ecef;
+}
+
+.pluckd-input-help {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.pluckd-form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(168, 192, 144, 0.2);
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.pluckd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(168, 192, 144, 0.3);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.pluckd-btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.pluckd-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(168, 192, 144, 0.4);
+}
+
+.pluckd-btn-primary:hover::before {
+  left: 100%;
+}
+
+.pluckd-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: var(--dark-green);
+  border: 2px solid var(--pistachio);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.pluckd-btn-secondary:hover {
+  background: var(--pistachio);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 192, 144, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pluckd-profile-container {
+    padding: 0 1rem;
   }
-  
-  .profile-container label {
-    display: block;
-    margin-bottom: 10px;
+
+  .pluckd-card-header {
+    padding: 2rem 1.5rem 1.5rem;
   }
-  
-  .profile-container input[type="text"],
-  .profile-container input[type="email"] {
+
+  .pluckd-profile-details {
+    padding: 2rem 1.5rem;
+  }
+
+  .pluckd-profile-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .pluckd-profile-actions {
+    padding: 1.5rem;
+    flex-direction: column;
+  }
+
+  .pluckd-form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .pluckd-btn-primary,
+  .pluckd-btn-secondary {
+    justify-content: center;
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
   }
-  
-  .profile-container button {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    background-color: #2190ff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .floral-accent {
+    opacity: 0.2;
   }
-  
-  .profile-details {
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 20px;
+}
+
+@media (max-width: 480px) {
+  .pluckd-profile-page {
+    padding: 1rem 0;
   }
-  
-  .profile-details h2 {
-    margin-top: 0;
+
+  .pluckd-btn-primary,
+  .pluckd-btn-secondary {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.95rem;
   }
-  
-  .profile-details p {
-    margin-bottom: 10px;
-  }
-  
-  .profile-details button {
-    background-color: #2190ff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    cursor: pointer;
-  }
-  
+}

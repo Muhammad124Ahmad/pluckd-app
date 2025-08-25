@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="pluckd-nav-content" id="navbarNav">
             <ul className="pluckd-nav-links">
               <li className="pluckd-nav-item">
-                <a className="pluckd-nav-link" href="/home.html">
+                <a className="pluckd-nav-link" href="/">
                   Home
                 </a>
               </li>

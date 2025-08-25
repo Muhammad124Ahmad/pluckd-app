@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import RegisterPage from "./components/RegisterPage/RegisterPage";
@@ -10,14 +10,18 @@ import Navbar from "./components/Navbar/Navbar";
 import DetailsPage from "./components/DetailsPage/DetailsPage";
 import Profile from "./components/Profile/Profile";
 import AddGift from "./components/AddGift/AddGift";
+import Home from "./components/Home/Home";
 
 function App() {
+  const location = useLocation();
+
+  // hide Navbar only on home page
+  const hideNavbar = location.pathname === "/";
   return (
     <>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Routes>
-        {/* the final code will not pass the products to every page, but each page will call the server API */}
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/app" element={<MainPage />} />
         <Route path="/app/login" element={<LoginPage />} />
         <Route path="/app/register" element={<RegisterPage />} />
@@ -25,7 +29,6 @@ function App() {
         <Route path="/app/search" element={<SearchPage />}></Route>
         <Route path="/app/profile" element={<Profile></Profile>}></Route>
         <Route path="/app/addGift" element={<AddGift></AddGift>}></Route>
-
       </Routes>
     </>
   );

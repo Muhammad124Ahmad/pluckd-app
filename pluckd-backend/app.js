@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const connectToDatabase = require("./models/db");
 const { loadData } = require("./util/import-mongo/index");
+const sentimentRoutes=require("./routes/sentimentRoutes")
 
 const app = express();
 app.use(cors());
@@ -28,6 +29,9 @@ app.use("/api/auth", authRoutes);
 
 //adding comment endpoint
 app.use("/api/comment", commentRoutes);
+
+//adding sentiment route
+app.use("/api/sentiment",sentimentRoutes)
 
 // Connect to MongoDB; we just do this one time
 connectToDatabase()

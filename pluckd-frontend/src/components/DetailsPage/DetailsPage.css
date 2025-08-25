@@ -1,72 +1,528 @@
-/* Style for image placeholder */
-.image-placeholder-large {
-    width: 100%; /* Task 1: Set width to 100% */
-    height: 400px; /* Task 1: Set height to 400px */
-    position: relative; /* Task 1: Set position to relative */
-    background-color: #f0f0f0; /* Task 1: Placeholder background color */
-    /* Additional styles as needed */
+/* PluckD Details Page Styles */
+
+:root {
+  --pistachio: #a8c090;
+  --cream: #f7f5f0;
+  --soft-pink: #e8d5d0;
+  --dark-green: #7a9b6b;
+  --text-dark: #3a3a3a;
+  --text-light: #6b6b6b;
 }
 
-/* Style for product image */
-.product-image-large {
-    width: 100%; /* Task 2: Set width to 100% */
-    height: 100%; /* Task 2: Set height to 100% */
-    object-fit: cover; /* Task 2: Ensure the image covers the area */
-    /* Additional styles as needed */
+.pluckd-details-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--cream) 0%, #f9f7f4 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: "Nunito", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
 }
 
-/* Style for 'no image available' placeholder */
-.no-image-available-large {
-    display: flex; /* Task 3: Use flexbox */
-    align-items: center; /* Task 3: Center the text vertically */
-    justify-content: center; /* Task 3: Center the text horizontally */
-    background-color: #ccc; /* Task 3: Set background color */
-    color: #333; /* Task 3: Set text color */
-    font-size: 18px; /* Task 3: Set font size */
-    /* Additional styles as needed */
+/* Subtle texture overlay */
+.pluckd-details-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      circle at 20% 80%,
+      rgba(168, 192, 144, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(232, 213, 208, 0.03) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Style for card header */
-.card-header {
-    background-color: #007bff; /* Task 4: Choose a background color */
-    color: #fff; /* Task 4: Set text color to white */
-    text-align: center;
-    padding: 15px;
-    /* Additional styles as needed */
+/* Decorative floral elements */
+.floral-accent {
+  position: absolute;
+  opacity: 0.35;
+  pointer-events: none;
+  color: #8b0000;
+  z-index: 2;
 }
 
-/* Style for details title */
-.details-title {
-    font-size: 28px; /* Task 5: Apply font size */
-    color: #333; /* Task 5: Set text color */
-    font-weight: bold; /* Task 5: Make the title bold */
-    /* Additional styles as needed */
+.floral-top-right {
+  top: 10%;
+  right: 8%;
+  transform: rotate(45deg);
 }
 
-/* Style for comments section */
-.comments-section {
-    /* Task 6: Style the comments section for readability */
-    margin-top: 20px; /* Add top margin for spacing */
-    /* Additional styles as needed */
+.floral-bottom-left {
+  bottom: 15%;
+  left: 5%;
+  transform: rotate(-30deg);
 }
 
-
-/* Style for individual comment card */
-.comments-section .card {
-    margin-bottom: 15px; /* Add bottom margin for spacing between cards */
-    /* Additional styles for individual comment card */
+.floral-top-left {
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%) rotate(-15deg);
 }
 
-
-/* Style for comment author */
-.comments-section .comment-author {
-    font-weight: bold; /* Make the comment author's name bold */
-    /* Additional styles for comment author */
+/* Decorative dots */
+.decorative-dots {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--soft-pink);
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 2;
 }
 
+.dot-1 {
+  top: 25%;
+  right: 20%;
+}
+.dot-2 {
+  top: 60%;
+  left: 15%;
+}
+.dot-3 {
+  bottom: 30%;
+  right: 12%;
+}
 
-/* Style for comment text */
-.comments-section .comment-text {
-    /* Additional styles for comment text */
-    color: #555;
+/* Container */
+.pluckd-container {
+  position: relative;
+  z-index: 3;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Loading State */
+.pluckd-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--soft-pink);
+  border-top: 3px solid var(--pistachio);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+/* Error Card */
+.pluckd-error-card {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(168, 192, 144, 0.15);
+  border: 1px solid rgba(168, 192, 144, 0.2);
+}
+
+.pluckd-error-card h3 {
+  color: var(--dark-green);
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.pluckd-error-card p {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+/* Back Button */
+.pluckd-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: var(--text-dark);
+  border: 2px solid var(--soft-pink);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.pluckd-btn-back:hover {
+  background: var(--soft-pink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(232, 213, 208, 0.4);
+}
+
+/* Details Card */
+.pluckd-details-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(168, 192, 144, 0.15);
+  border: 1px solid rgba(168, 192, 144, 0.1);
+  margin-bottom: 3rem;
+}
+
+.pluckd-card-header {
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  padding: 2rem;
+  text-align: center;
+}
+
+.pluckd-details-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  color: white;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.pluckd-card-body {
+  padding: 3rem 2rem;
+}
+
+/* Product Image */
+.pluckd-product-image-container {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pluckd-product-image {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.pluckd-no-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background: var(--cream);
+  border-radius: 12px;
+  border: 2px dashed var(--soft-pink);
+  color: var(--text-light);
+}
+
+.pluckd-no-image p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Details Grid */
+.pluckd-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.pluckd-detail-item {
+  background: var(--cream);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(168, 192, 144, 0.2);
+}
+
+.pluckd-detail-full-width {
+  grid-column: 1 / -1;
+}
+
+.pluckd-detail-label {
+  display: block;
+  font-weight: 500;
+  color: var(--dark-green);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.pluckd-detail-value {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  font-weight: 400;
+}
+
+.pluckd-detail-description {
+  font-size: 1rem;
+  color: var(--text-dark);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Comments Section */
+.pluckd-comments-section {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 25px rgba(168, 192, 144, 0.15);
+  border: 1px solid rgba(168, 192, 144, 0.1);
+}
+
+.pluckd-comments-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  color: var(--dark-green);
+  margin-bottom: 2rem;
+  font-weight: 500;
+  position: relative;
+}
+
+.pluckd-comments-title::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pistachio), transparent);
+}
+
+.pluckd-comments-list {
+  margin-bottom: 2.5rem;
+}
+
+/* Comment Cards */
+.pluckd-comment-card {
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(168, 192, 144, 0.2);
+  position: relative;
+}
+
+.pluckd-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.pluckd-comment-author {
+  font-weight: 500;
+  color: var(--dark-green);
+  font-size: 0.95rem;
+}
+
+.pluckd-sentiment-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(168, 192, 144, 0.3);
+}
+
+.pluckd-sentiment-emoji {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.pluckd-sentiment-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.pluckd-comment-text {
+  color: var(--text-dark);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Add Comment Section */
+.pluckd-add-comment {
+  border-top: 1px solid rgba(168, 192, 144, 0.2);
+  padding-top: 2rem;
+}
+
+.pluckd-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pluckd-input-label {
+  font-weight: 500;
+  color: var(--dark-green);
+  font-size: 1rem;
+}
+
+.pluckd-comment-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--soft-pink);
+  border-radius: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  background: white;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.pluckd-comment-input:focus {
+  outline: none;
+  border-color: var(--pistachio);
+  box-shadow: 0 0 0 3px rgba(168, 192, 144, 0.1);
+}
+
+.pluckd-comment-input::placeholder {
+  color: var(--text-light);
+}
+
+/* Buttons */
+.pluckd-btn-primary {
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(168, 192, 144, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.pluckd-btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.pluckd-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(168, 192, 144, 0.4);
+}
+
+.pluckd-btn-primary:hover::before {
+  left: 100%;
+}
+
+.pluckd-btn-secondary {
+  background: white;
+  color: var(--dark-green);
+  border: 2px solid var(--pistachio);
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pluckd-btn-secondary:hover {
+  background: var(--pistachio);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.pluckd-btn-delete {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.pluckd-btn-delete:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+/* Error Message */
+.pluckd-error-message {
+  color: #dc3545;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pluckd-container {
+    padding: 1rem;
+  }
+
+  .pluckd-card-body {
+    padding: 2rem 1rem;
+  }
+
+  .pluckd-comments-section {
+    padding: 1.5rem;
+  }
+
+  .pluckd-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .floral-accent {
+    opacity: 0.2;
+  }
+
+  .pluckd-input-group {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pluckd-btn-primary {
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .pluckd-comment-input {
+    padding: 0.875rem 1.25rem;
+  }
 }

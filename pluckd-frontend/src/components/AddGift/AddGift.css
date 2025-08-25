@@ -1,0 +1,426 @@
+/* PluckD AddGift Page Styles */
+
+:root {
+  --pistachio: #a8c090;
+  --cream: #f7f5f0;
+  --soft-pink: #e8d5d0;
+  --dark-green: #7a9b6b;
+  --text-dark: #3a3a3a;
+  --text-light: #6b6b6b;
+}
+
+.pluckd-addgift-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--cream) 0%, #f9f7f4 100%);
+  position: relative;
+  overflow-x: hidden;
+  font-family: "Nunito", sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding: 2rem 0;
+}
+
+/* Subtle texture overlay */
+.pluckd-addgift-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      circle at 20% 80%,
+      rgba(168, 192, 144, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(232, 213, 208, 0.03) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Decorative floral elements */
+.floral-accent {
+  position: absolute;
+  opacity: 0.35;
+  pointer-events: none;
+  color: #8b0000;
+  z-index: 2;
+}
+
+.floral-top-right {
+  top: 8%;
+  right: 5%;
+  transform: rotate(45deg);
+}
+
+.floral-bottom-left {
+  bottom: 10%;
+  left: 3%;
+  transform: rotate(-30deg);
+}
+
+.floral-mid-left {
+  top: 40%;
+  left: 2%;
+  transform: rotate(-60deg);
+}
+
+/* Decorative dots */
+.decorative-dots {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--soft-pink);
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.dot-1 {
+  top: 15%;
+  right: 20%;
+}
+.dot-2 {
+  top: 65%;
+  left: 10%;
+}
+.dot-3 {
+  bottom: 20%;
+  right: 8%;
+}
+
+/* Container */
+.pluckd-addgift-container {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Back Button */
+.pluckd-btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  color: var(--text-dark);
+  border: 2px solid var(--soft-pink);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.pluckd-btn-back:hover {
+  background: var(--soft-pink);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(232, 213, 208, 0.4);
+}
+
+/* AddGift Card */
+.pluckd-addgift-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(168, 192, 144, 0.2);
+  border: 1px solid rgba(168, 192, 144, 0.15);
+}
+
+.pluckd-card-header {
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.pluckd-card-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  clip-path: ellipse(100% 100% at 50% 0%);
+}
+
+.pluckd-addgift-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 500;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.02em;
+}
+
+.pluckd-addgift-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+  margin: 0;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* Form Styles */
+.pluckd-addgift-form {
+  padding: 3rem 2rem 2rem;
+}
+
+.pluckd-form-group {
+  margin-bottom: 2rem;
+}
+
+.pluckd-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pluckd-form-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: var(--dark-green);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.pluckd-form-input,
+.pluckd-form-textarea,
+.pluckd-form-select {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--soft-pink);
+  border-radius: 16px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  background: white;
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+  resize: vertical;
+}
+
+.pluckd-form-input:focus,
+.pluckd-form-textarea:focus,
+.pluckd-form-select:focus {
+  outline: none;
+  border-color: var(--pistachio);
+  box-shadow: 0 0 0 3px rgba(168, 192, 144, 0.1);
+  transform: translateY(-1px);
+}
+
+.pluckd-form-input::placeholder,
+.pluckd-form-textarea::placeholder {
+  color: var(--text-light);
+}
+
+.pluckd-form-textarea {
+  min-height: 120px;
+}
+
+.pluckd-form-select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  appearance: none;
+}
+
+/* File Upload Styles */
+.pluckd-file-upload {
+  position: relative;
+}
+
+.pluckd-file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.pluckd-file-upload-display {
+  border: 2px dashed var(--soft-pink);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: var(--cream);
+}
+
+.pluckd-file-upload:hover .pluckd-file-upload-display {
+  border-color: var(--pistachio);
+  background: white;
+}
+
+.pluckd-file-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-light);
+}
+
+.pluckd-file-placeholder p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.pluckd-file-placeholder span {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.pluckd-file-selected {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--dark-green);
+  font-weight: 500;
+}
+
+.pluckd-file-selected span {
+  font-size: 1rem;
+}
+
+/* Form Actions */
+.pluckd-form-actions {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(168, 192, 144, 0.2);
+  display: flex;
+  justify-content: center;
+}
+
+.pluckd-submit-btn {
+  min-width: 200px;
+  justify-content: center;
+}
+
+/* Buttons */
+.pluckd-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, var(--pistachio) 0%, var(--dark-green) 100%);
+  color: white;
+  border: none;
+  padding: 1.25rem 2.5rem;
+  border-radius: 50px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(168, 192, 144, 0.3);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.pluckd-btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.pluckd-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(168, 192, 144, 0.4);
+}
+
+.pluckd-btn-primary:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.pluckd-btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading Spinner */
+.pluckd-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pluckd-addgift-container {
+    padding: 0 1rem;
+  }
+
+  .pluckd-card-header {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .pluckd-addgift-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .pluckd-form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pluckd-file-upload-display {
+    padding: 1.5rem;
+  }
+
+  .floral-accent {
+    opacity: 0.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .pluckd-addgift-page {
+    padding: 1rem 0;
+  }
+
+  .pluckd-btn-primary {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    min-width: auto;
+    width: 100%;
+  }
+
+  .pluckd-file-placeholder p {
+    font-size: 1rem;
+  }
+
+  .pluckd-file-placeholder span {
+    font-size: 0.85rem;
+  }
+}

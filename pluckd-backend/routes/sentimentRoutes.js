@@ -1,20 +1,16 @@
-require("dotenv").config();
+const logger = require("../logger");
+const connectToDatabase = require("../models/db");
 const express = require("express");
-const axios = require("axios");
-const logger = require("./logger");
-const expressPino = require("express-pino-logger")({ logger });
+
 // Task 1: import the natural library
 const natural = require("natural");
 
 // Task 2: initialize the express server
-app = express();
-const port = process.env.PORT || 3000;
+const router = express.Router();
 
-app.use(express.json());
-app.use(expressPino);
 
-app.post("/sentiment", async (req, res) => {
-  const { sentence } = req.query;
+router.post("/", async (req, res) => {
+  const { sentence } = req.body;
 
   if (!sentence) {
     logger.error("No sentence provided");
@@ -52,6 +48,4 @@ app.post("/sentiment", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  logger.info(`Server running on port ${port}`);
-});
+module.exports = router;
