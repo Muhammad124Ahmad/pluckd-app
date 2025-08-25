@@ -22,6 +22,7 @@ export default function Navbar() {
       }
     }
   }, [isLoggedIn, setIsLoggedIn, setUserName]);
+  
   const handleLogout = () => {
     sessionStorage.removeItem("auth-token");
     sessionStorage.removeItem("name");
@@ -29,16 +30,22 @@ export default function Navbar() {
     setIsLoggedIn(false);
     navigate(`/app`);
   };
+  
   const profileSection = () => {
     navigate(`/app/profile`);
   };
+
+  const handleBrandClick = () => {
+    navigate("/");
+  };
+
   return (
     <>
-     
-
       <nav className="pluckd-navbar" id="navbar_container">
         <div className="pluckd-navbar-container">
-          <strong className="pluckd-brand">PluckD</strong>
+          <div className="pluckd-brand" onClick={handleBrandClick}>
+            PluckD
+          </div>
 
           <button
             className="pluckd-navbar-toggle"
@@ -56,11 +63,6 @@ export default function Navbar() {
 
           <div className="pluckd-nav-content" id="navbarNav">
             <ul className="pluckd-nav-links">
-              <li className="pluckd-nav-item">
-                <a className="pluckd-nav-link" href="/">
-                  Home
-                </a>
-              </li>
               <li className="pluckd-nav-item">
                 <Link className="pluckd-nav-link" to="/app">
                   Gifts
@@ -80,7 +82,7 @@ export default function Navbar() {
                     Welcome, {userName}
                   </span>
                   <button
-                    className="pluckd-nav-link pluckd-login-btn"
+                    className="pluckd-logout-btn"
                     onClick={handleLogout}
                   >
                     Logout
@@ -89,13 +91,13 @@ export default function Navbar() {
               ) : (
                 <>
                   <Link
-                    className="pluckd-nav-link pluckd-login-btn"
+                    className="pluckd-login-btn"
                     to="/app/login"
                   >
                     Login
                   </Link>
                   <Link
-                    className="pluckd-nav-link pluckd-register-btn"
+                    className="pluckd-register-btn"
                     to="/app/register"
                   >
                     Register
