@@ -30,15 +30,6 @@ function MainPage() {
     navigate(`/app/product/${productId}`);
   };
 
-  const formatDate = (timestamp) => {
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleDateString("default", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
   const getConditionClass = (condition) => {
     return condition === "New"
       ? "pluckd-condition-new"
@@ -309,7 +300,7 @@ function MainPage() {
                 <div className="pluckd-image-container">
                   {gift.image ? (
                     <img
-                      src={gift.image}
+                      src={`${urlConfig.backendUrl}/${gift.image}`}
                       alt={gift.name}
                       className="pluckd-gift-image"
                     />
@@ -329,12 +320,10 @@ function MainPage() {
                     {gift.condition}
                   </p>
 
-                  <p className="pluckd-date-text">
-                    {formatDate(gift.date_added)}
-                  </p>
+                  <p className="pluckd-date-text">{gift.date_added}</p>
 
                   <button
-                    onClick={() => goToDetailsPage(gift.id)}
+                    onClick={() => goToDetailsPage(gift._id)}
                     className="pluckd-details-btn"
                   >
                     View Details

@@ -140,6 +140,7 @@ const Profile = () => {
           >
             {changed}
           </span>
+          <button className="btn btn-warning" onClick={()=>(navigate('/app/addGift'))}>Add new Gift</button>
         </div>
       )}
     </div>

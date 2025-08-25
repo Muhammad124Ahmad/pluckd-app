@@ -14,6 +14,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 const port = 3060;
+app.use("/uploads", express.static("uploads"));
+
 
 //adding gift route
 app.use("/api/gifts", giftroutes);

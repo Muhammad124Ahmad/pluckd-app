@@ -9,6 +9,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import DetailsPage from "./components/DetailsPage/DetailsPage";
 import Profile from "./components/Profile/Profile";
+import AddGift from "./components/AddGift/AddGift";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route path="/app/product/:productId" element={<DetailsPage />}></Route>
         <Route path="/app/search" element={<SearchPage />}></Route>
         <Route path="/app/profile" element={<Profile></Profile>}></Route>
+        <Route path="/app/addGift" element={<AddGift></AddGift>}></Route>
+
       </Routes>
     </>
   );

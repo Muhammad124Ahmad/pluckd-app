@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { urlConfig } from "../../config";
-import "./SearchPage.css"
+import "./SearchPage.css";
 
 function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -62,18 +62,18 @@ function SearchPage() {
 
   return (
     <>
-      
-
       <div className="pluckd-search-container">
         <div className="pluckd-search-content">
           <h1 className="pluckd-search-title">Discover Perfect Gifts</h1>
-          
+
           <div className="pluckd-filters-card">
             <h5 className="pluckd-filters-title">Filters</h5>
             <div className="pluckd-filters-grid">
               {/* Category Dropdown */}
               <div className="pluckd-filter-group">
-                <label htmlFor="categorySelect" className="pluckd-filter-label">Category</label>
+                <label htmlFor="categorySelect" className="pluckd-filter-label">
+                  Category
+                </label>
                 <select id="categorySelect" className="pluckd-filter-select">
                   <option value="">All Categories</option>
                   {categories.map((category) => (
@@ -86,7 +86,12 @@ function SearchPage() {
 
               {/* Condition Dropdown */}
               <div className="pluckd-filter-group">
-                <label htmlFor="conditionSelect" className="pluckd-filter-label">Condition</label>
+                <label
+                  htmlFor="conditionSelect"
+                  className="pluckd-filter-label"
+                >
+                  Condition
+                </label>
                 <select id="conditionSelect" className="pluckd-filter-select">
                   <option value="">All Conditions</option>
                   {conditions.map((condition) => (
@@ -100,7 +105,8 @@ function SearchPage() {
               {/* Age Range Slider */}
               <div className="pluckd-filter-group pluckd-age-slider-container">
                 <label htmlFor="ageRange" className="pluckd-filter-label">
-                  Less than <span className="pluckd-age-value">{ageRange}</span> years
+                  Less than <span className="pluckd-age-value">{ageRange}</span>{" "}
+                  years
                 </label>
                 <input
                   type="range"
@@ -122,9 +128,9 @@ function SearchPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          
+
           <button className="pluckd-search-btn" onClick={handleSearch}>
-             Search Gifts
+            Search Gifts
           </button>
 
           <div className="pluckd-results-container">
@@ -132,7 +138,7 @@ function SearchPage() {
               searchResults.map((product) => (
                 <div key={product.id} className="pluckd-result-card">
                   <img
-                    src={product.image}
+                    src={`${urlConfig.backendUrl}/${product.image}`}
                     alt={product.name}
                     className="pluckd-result-image"
                   />
@@ -144,7 +150,7 @@ function SearchPage() {
                   </div>
                   <div className="pluckd-result-footer">
                     <button
-                      onClick={() => goToDetailsPage(product.id)}
+                      onClick={() => goToDetailsPage(product._id)}
                       className="pluckd-view-more-btn"
                     >
                       View More Details

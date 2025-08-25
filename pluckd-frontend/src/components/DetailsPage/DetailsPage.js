@@ -135,7 +135,7 @@ function DetailsPage() {
             {gift.image ? (
               // Task 5: Display gift image
               <img
-                src={gift.image}
+                src={`${urlConfig.backendUrl}/${gift.image}`}
                 alt={gift.name}
                 className="product-image-large"
               />
@@ -154,11 +154,11 @@ function DetailsPage() {
           </p>
           <p>
             <strong>Date Added:</strong>
-            {gift.dateAdded}
+            {gift.date_added}
           </p>
           <p>
             <strong>Age (Years):</strong>
-            {gift.age}
+            {gift.age_years}
           </p>
           <p>
             <strong>Description:</strong>
