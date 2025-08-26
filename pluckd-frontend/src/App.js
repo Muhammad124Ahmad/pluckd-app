@@ -12,6 +12,7 @@ import Profile from "./components/Profile/Profile";
 import AddGift from "./components/AddGift/AddGift";
 import Home from "./components/Home/Home";
 
+
 function App() {
   const location = useLocation();
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/app/profile" element={<Profile></Profile>}></Route>
         <Route path="/app/addGift" element={<AddGift></AddGift>}></Route>
       </Routes>
+      
     </>
   );
 }

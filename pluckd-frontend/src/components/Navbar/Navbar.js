@@ -22,6 +22,22 @@ export default function Navbar() {
       }
     }
   }, [isLoggedIn, setIsLoggedIn, setUserName]);
+
+  useEffect(() => {
+  const navContent = document.querySelector(".pluckd-nav-content");
+  const navLinks = document.querySelectorAll(".pluckd-nav-content a");
+
+  const handleLinkClick = () => {
+    navContent.classList.remove("show");
+  };
+
+  navLinks.forEach(link => link.addEventListener("click", handleLinkClick));
+
+  return () => {
+    navLinks.forEach(link => link.removeEventListener("click", handleLinkClick));
+  };
+}, []);
+
   
   const handleLogout = () => {
     sessionStorage.removeItem("auth-token");
