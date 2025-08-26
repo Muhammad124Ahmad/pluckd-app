@@ -1,3 +1,4 @@
+/*jshint esversion: 8 */
 const logger = require("../logger");
 const connectToDatabase = require("../models/db");
 const express = require("express");

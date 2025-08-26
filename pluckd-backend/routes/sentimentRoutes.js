@@ -1,3 +1,4 @@
+/*jshint esversion: 8 */
 const logger = require("../logger");
 const express = require("express");
 
