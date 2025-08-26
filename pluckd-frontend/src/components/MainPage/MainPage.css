@@ -1,195 +1,138 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&family=Comfortaa:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&display=swap");
+
+:root {
+  --soft-pink: #e8d5d0;
+}
 
 .pluckd-main-container {
+  background: linear-gradient(135deg, #faf8f5 0%, #f5f2ef 50%, #fdf7f3 100%);
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8f6f3 0%, #fff9f5 50%, #f3f1ee 100%);
+  padding: 40px 20px;
+  font-family: "Nunito", sans-serif;
   position: relative;
   overflow-x: hidden;
-  font-family: "Inter", sans-serif;
-  padding: 40px 20px;
 }
 
 /* Decorative floral elements */
 .floral-accent {
   position: absolute;
-  color: #d4af9a;
-  opacity: 0.4;
-  z-index: 1;
+  opacity: 0.35;
+  pointer-events: none;
+  color: #8b0000;
+  z-index: 2;
 }
 
 .floral-top-left {
-  top: 20px;
-  left: 20px;
-  animation: float 6s ease-in-out infinite;
-  will-change: transform;
-}
-
-.floral-top-right {
-  top: 80px;
-  right: 30px;
-}
-
-.floral-bottom-left {
-  bottom: 100px;
-  left: 40px;
+  top: 8%;
+  left: 5%;
+  transform: rotate(-15deg);
 }
 
 .floral-bottom-right {
-  bottom: 20px;
-  right: 20px;
+  bottom: 10%;
+  right: 8%;
+  transform: rotate(25deg);
 }
 
-.floral-center {
-  top: 50%;
-  left: 15%;
-  transform: translateY(-50%);
+.floral-mid-left {
+  top: 55%;
+  left: 3%;
+  transform: rotate(-45deg);
 }
 
-.floral-mid-right {
-  top: 60%;
-  right: 10%;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translate3d(0, 0px, 0) rotate(0deg);
-    will-change: auto;
-  }
-  50% {
-    transform: translate3d(0, -10px, 0) rotate(2deg);
-  }
-}
-
-/* Reduce animations on scroll or prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .floral-accent,
-  .decorative-dots {
-    animation: none;
-  }
-}
-
-/* Decorative dots - simplified */
+/* Decorative dots */
 .decorative-dots {
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: #c4a484;
+  width: 4px;
+  height: 4px;
+  background: var(--soft-pink);
   border-radius: 50%;
   opacity: 0.6;
-  z-index: 1;
+  z-index: 2;
 }
 
 .dot-1 {
-  top: 25%;
-  left: 8%;
+  top: 20%;
+  right: 25%;
 }
-
 .dot-2 {
   top: 70%;
-  right: 20%;
+  left: 20%;
 }
-
 .dot-3 {
-  top: 45%;
-  left: 5%;
+  bottom: 25%;
+  right: 15%;
 }
 
-/* Main content */
-.pluckd-content {
-  position: relative;
-  z-index: 2;
+.pluckd-gifts-grid {
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.pluckd-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-.pluckd-title {
-  font-family: "Playfair Display", serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-  color: #5a4037;
-  margin-bottom: 15px;
-  letter-spacing: -0.02em;
-  text-shadow: 0 2px 4px rgba(90, 64, 55, 0.1);
-}
-
-.pluckd-subtitle {
-  font-family: "Inter", sans-serif;
-  font-size: 1.1rem;
-  color: #8b6f47;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  margin-bottom: 20px;
-}
-
-/* Grid layout */
-.pluckd-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  gap: 32px;
   padding: 20px 0;
-}
-
-/* Card styling */
-.pluckd-card {
-  background: linear-gradient(145deg, #ffffff, #fefcfa);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 8px 32px rgba(90, 64, 55, 0.08),
-    0 2px 8px rgba(90, 64, 55, 0.04);
-  border: 1px solid rgba(196, 164, 132, 0.1);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
+  z-index: 3;
 }
 
-.pluckd-card::before {
+.pluckd-gift-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(253, 251, 248, 0.95)
+  );
+  border: 1px solid rgba(196, 164, 132, 0.15);
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(90, 64, 55, 0.06);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  overflow: hidden;
+  position: relative;
+  transform-origin: center;
+  backdrop-filter: blur(10px);
+}
+
+.pluckd-gift-card:hover {
+  transform: translateY(-8px) scale(1.02) rotate(0.5deg);
+  box-shadow: 0 12px 35px rgba(90, 64, 55, 0.12);
+  border-color: rgba(232, 165, 165, 0.3);
+}
+
+.pluckd-gift-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #c4a484, #e8c5a0, #d4af9a);
+  background: linear-gradient(90deg, #e8a5a5, #d4af9a, #c4a484);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-.pluckd-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(90, 64, 55, 0.1),
-    0 4px 12px rgba(90, 64, 55, 0.06);
-}
-
-.pluckd-card:hover::before {
+.pluckd-gift-card:hover::before {
   opacity: 1;
 }
 
-/* Image styling */
 .pluckd-image-container {
-  width: 100%;
-  height: 240px;
-  border-radius: 15px;
-  overflow: hidden;
-  margin-bottom: 20px;
   position: relative;
-  background: linear-gradient(135deg, #f5f2ef, #e8e0db);
+  height: 220px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 165, 165, 0.05),
+    rgba(212, 175, 154, 0.05)
+  );
 }
 
-.pluckd-image {
+.pluckd-gift-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.pluckd-card:hover .pluckd-image {
-  transform: scale(1.02);
+.pluckd-gift-card:hover .pluckd-gift-image {
+  transform: scale(1.05) rotate(-0.5deg);
 }
 
 .pluckd-no-image {
@@ -197,99 +140,192 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  font-family: "Inter", sans-serif;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 165, 165, 0.1),
+    rgba(212, 175, 154, 0.1)
+  );
   color: #8b6f47;
-  font-size: 0.9rem;
-  font-weight: 400;
-  text-align: center;
-  background: linear-gradient(135deg, #f5f2ef, #e8e0db);
+  font-family: "Nunito", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
 }
 
-/* Typography */
-.pluckd-card-title {
-  font-family: "Playfair Display", serif;
+.pluckd-card-body {
+  padding: 24px;
+  position: relative;
+}
+
+.pluckd-gift-title {
+  font-family: "Comfortaa", serif;
   font-size: 1.4rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #5a4037;
-  margin-bottom: 12px;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-}
-
-/* Condition badges */
-.pluckd-condition {
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   letter-spacing: 0.3px;
+  line-height: 1.3;
 }
 
-.condition-new {
-  background: linear-gradient(135deg, #e8f5e8, #d4edda);
-  color: #2d5016;
-  border: 1px solid rgba(45, 80, 22, 0.1);
+.pluckd-condition-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border: 2px solid transparent;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.condition-used {
-  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+.pluckd-condition-new {
+  background: linear-gradient(
+    135deg,
+    rgba(132, 204, 132, 0.15),
+    rgba(144, 238, 144, 0.15)
+  );
+  color: #2d5a2d;
+  border-color: rgba(132, 204, 132, 0.3);
+}
+
+.pluckd-condition-used {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 193, 7, 0.15),
+    rgba(255, 206, 84, 0.15)
+  );
   color: #8b6914;
-  border: 1px solid rgba(139, 105, 20, 0.1);
+  border-color: rgba(255, 193, 7, 0.3);
 }
 
-.pluckd-date {
-  font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
+.pluckd-date-text {
   color: #8b6f47;
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
   margin-bottom: 20px;
-  font-weight: 300;
+  opacity: 0.8;
 }
 
-/* Button styling */
-.pluckd-button {
+.pluckd-details-btn {
   background: linear-gradient(135deg, #c4a484, #d4af9a);
   color: white;
-  border: none;
+  font-family: "Nunito", sans-serif;
   padding: 12px 28px;
-  border-radius: 25px;
-  font-family: "Inter", sans-serif;
+  border-radius: 30px;
+  font-weight: 600;
   font-size: 0.95rem;
-  font-weight: 500;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(196, 164, 132, 0.3);
-  letter-spacing: 0.3px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(196, 164, 132, 0.3);
+  transform-origin: center;
   width: 100%;
 }
 
-.pluckd-button:hover {
+.pluckd-details-btn:hover {
   background: linear-gradient(135deg, #b8956f, #c4a484);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(196, 164, 132, 0.4);
+  transform: translateY(-2px) scale(1.03) rotate(-0.5deg);
+  box-shadow: 0 6px 20px rgba(196, 164, 132, 0.4);
+  border-radius: 25px;
 }
 
-.pluckd-button:active {
-  transform: translateY(0);
+.pluckd-details-btn:active {
+  transform: translateY(0) scale(0.98);
 }
 
-/* Responsive design */
+/* Empty state styling */
+.pluckd-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #8b6f47;
+  font-family: "Nunito", sans-serif;
+  position: relative;
+  z-index: 3;
+}
+
+.pluckd-empty-state h3 {
+  font-family: "Comfortaa", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #5a4037;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.pluckd-empty-state p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  opacity: 0.8;
+  letter-spacing: 0.3px;
+}
+
+/* Mobile responsive */
 @media (max-width: 768px) {
   .pluckd-main-container {
     padding: 20px 15px;
   }
 
-  .pluckd-title {
-    font-size: 2.5rem;
+  .pluckd-gifts-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .pluckd-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .pluckd-gift-card {
+    border-radius: 20px;
+  }
+
+  .pluckd-gift-title {
+    font-size: 1.2rem;
+  }
+
+  .pluckd-image-container {
+    height: 200px;
+  }
+
+  .pluckd-card-body {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pluckd-gifts-grid {
+    padding: 0;
+  }
+
+  .pluckd-image-container {
+    height: 180px;
+  }
+
+  .pluckd-card-body {
+    padding: 16px;
+  }
+
+  .pluckd-gift-title {
+    font-size: 1.1rem;
   }
 
   .floral-accent {
     opacity: 0.2;
   }
+}
+
+/* Loading animation */
+@keyframes pluckd-shimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.pluckd-loading-card {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: pluckd-shimmer 1.5s ease-in-out infinite;
 }

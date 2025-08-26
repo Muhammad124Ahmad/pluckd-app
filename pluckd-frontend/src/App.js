@@ -11,6 +11,7 @@ import DetailsPage from "./components/DetailsPage/DetailsPage";
 import Profile from "./components/Profile/Profile";
 import AddGift from "./components/AddGift/AddGift";
 import Home from "./components/Home/Home";
+import AboutPage from "./components/AboutPage/AboutPage";
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/app/search" element={<SearchPage />}></Route>
         <Route path="/app/profile" element={<Profile></Profile>}></Route>
         <Route path="/app/addGift" element={<AddGift></AddGift>}></Route>
+        <Route path="/app/about" element={<AboutPage></AboutPage>}></Route>
       </Routes>
       
     </>

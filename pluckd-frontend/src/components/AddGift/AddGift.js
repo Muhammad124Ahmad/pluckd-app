@@ -6,12 +6,15 @@ import { useAppContext } from "../../context/AuthContext";
 import "./AddGift.css";
 
 function AddGift() {
+  // Check if user is authenticated on component mount
   useEffect(() => {
     const authenticationToken = sessionStorage.getItem("auth-token");
     if (!authenticationToken) {
       return navigate("/app/login");
     }
   });
+
+  // Form state management
   const [category, setCategory] = useState("Office");
   const [condition, setCondition] = useState("New");
   const [age, setAge] = useState("");
@@ -19,18 +22,20 @@ function AddGift() {
   const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { userName } = useAppContext();
 
+  const { userName } = useAppContext();
   const navigate = useNavigate();
 
   const handleBackClick = () => {
     navigate(-1);
   };
 
+  // Handle form submission and gift creation
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Prepare form data for multipart upload (includes image file)
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
@@ -52,6 +57,7 @@ function AddGift() {
         return console.log("request Failed --adding gift");
       }
 
+      // Redirect to main page after successful submission
       return navigate("/app");
     } catch (error) {
       setIsSubmitting(false);
@@ -61,7 +67,7 @@ function AddGift() {
 
   return (
     <div className="pluckd-addgift-page">
-      {/* Decorative floral elements */}
+      {/* Background decorative floral elements for visual appeal */}
       <svg
         className="floral-accent floral-top-right"
         width="90"
@@ -104,12 +110,13 @@ function AddGift() {
         />
       </svg>
 
-      {/* Decorative dots */}
+      {/* Small decorative dots for added visual interest */}
       <div className="decorative-dots dot-1"></div>
       <div className="decorative-dots dot-2"></div>
       <div className="decorative-dots dot-3"></div>
 
       <div className="pluckd-addgift-container">
+        {/* Back navigation button */}
         <button className="pluckd-btn-back" onClick={handleBackClick}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
@@ -121,6 +128,7 @@ function AddGift() {
         </button>
 
         <div className="pluckd-addgift-card">
+          {/* Form header with title and subtitle */}
           <div className="pluckd-card-header">
             <h1 className="pluckd-addgift-title">Share a New Gift</h1>
             <p className="pluckd-addgift-subtitle">
@@ -129,7 +137,7 @@ function AddGift() {
           </div>
 
           <form className="pluckd-addgift-form" onSubmit={handleSubmit}>
-            {/* Name */}
+            {/* Gift name field */}
             <div className="pluckd-form-group">
               <label htmlFor="name" className="pluckd-form-label">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -159,7 +167,7 @@ function AddGift() {
               />
             </div>
 
-            {/* Category & Condition Row */}
+            {/* Category and condition fields in a row */}
             <div className="pluckd-form-row">
               <div className="pluckd-form-group">
                 <label htmlFor="category" className="pluckd-form-label">
@@ -242,7 +250,7 @@ function AddGift() {
               </div>
             </div>
 
-            {/* Age */}
+            {/* Age input field */}
             <div className="pluckd-form-group">
               <label htmlFor="age_years" className="pluckd-form-label">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -276,7 +284,7 @@ function AddGift() {
               />
             </div>
 
-            {/* Description */}
+            {/* Description textarea */}
             <div className="pluckd-form-group">
               <label htmlFor="description" className="pluckd-form-label">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -306,7 +314,7 @@ function AddGift() {
               />
             </div>
 
-            {/* Image Upload */}
+            {/* Image upload field with visual feedback */}
             <div className="pluckd-form-group">
               <label htmlFor="image" className="pluckd-form-label">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -349,6 +357,7 @@ function AddGift() {
                 />
                 <div className="pluckd-file-upload-display">
                   {image ? (
+                    // Show selected file name when image is chosen
                     <div className="pluckd-file-selected">
                       <svg
                         width="24"
@@ -384,6 +393,7 @@ function AddGift() {
                       <span>{image.name}</span>
                     </div>
                   ) : (
+                    // Show upload placeholder when no image selected
                     <div className="pluckd-file-placeholder">
                       <svg
                         width="48"
@@ -417,7 +427,7 @@ function AddGift() {
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit button with loading state */}
             <div className="pluckd-form-actions">
               <button
                 type="submit"
@@ -451,4 +461,5 @@ function AddGift() {
     </div>
   );
 }
+
 export default AddGift;

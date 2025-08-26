@@ -1,3 +1,65 @@
+:root {
+          --soft-pink: #e8d5d0;
+        }
+
+        /* Decorative floral elements */
+        .floral-accent {
+          position: absolute;
+          opacity: 0.35;
+          pointer-events: none;
+          color: #8b0000;
+          z-index: 2;
+        }
+
+        .floral-top-left {
+          top: 8%;
+          left: 5%;
+          transform: rotate(-15deg);
+        }
+
+        .floral-bottom-right {
+          bottom: 10%;
+          right: 8%;
+          transform: rotate(25deg);
+        }
+
+        .floral-mid-left {
+          top: 55%;
+          left: 3%;
+          transform: rotate(-45deg);
+        }
+
+        /* Decorative dots */
+        .decorative-dots {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: var(--soft-pink);
+          border-radius: 50%;
+          opacity: 0.6;
+          z-index: 2;
+        }
+
+        .dot-1 {
+          top: 20%;
+          right: 25%;
+        }
+        .dot-2 {
+          top: 70%;
+          left: 20%;
+        }
+        .dot-3 {
+          bottom: 25%;
+          right: 15%;
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 480px) {
+          .floral-accent {
+            opacity: 0.2;
+          }
+        }
+
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&family=Comfortaa:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&display=swap");
 
 .pluckd-search-container {

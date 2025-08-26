@@ -13,7 +13,6 @@ function DetailsPage() {
   const [comments, setComments] = useState([]);
   const [writtenComment, setWrittenComment] = useState("");
   const [commentErr, setCommentErr] = useState("");
-  const [sentiment, setSentiment] = useState("");
   const { userName } = useAppContext();
 
   useEffect(() => {
@@ -62,57 +61,70 @@ function DetailsPage() {
   };
 
   const handleComment = async () => {
-    try {
-      const commentURL = `${urlConfig.backendUrl}/api/comment/`;
-      const sentimentURL = `${urlConfig.backendUrl}/api/sentiment/`;
-      const response = await fetch(commentURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userName: userName,
-          comment: writtenComment,
-          productId: productId,
-        }),
-      });
+  try {
+    const commentURL = `${urlConfig.backendUrl}/api/comment/`;
+    const sentimentURL = `${urlConfig.backendUrl}/api/sentiment/`;
 
-      const sentimentResponse = await fetch(sentimentURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          sentence: writtenComment,
-        }),
-      });
+    
+    const sentimentResponse = await fetch(sentimentURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sentence: writtenComment }),
+    });
 
-      const json = await response.json();
-
-      const sentimentJson = await sentimentResponse.json();
-
-      if (!response.ok) {
-        // Validation error case
-        if (Array.isArray(json.error) && json.error.length > 0) {
-          setCommentErr("Comment must not be empty"); // e.g. "Invalid value"
-        } else {
-          setCommentErr("Something went wrong");
-        }
-        return;
-      }
-
-      setComments((prev) => [
-        ...prev,
-        {
-          _id: json._id,
-          userName,
-          comment: writtenComment,
-          productId: productId,
-        },
-      ]);
-      setSentiment(sentimentJson.sentiment);
-      setWrittenComment("");
-      setCommentErr(null);
-    } catch (error) {
-      setCommentErr("Something went wrong, could not add comment");
+    if (!sentimentResponse.ok) {
+      setCommentErr("Failed to analyze sentiment");
+      return;
     }
-  };
+
+    const { sentiment } = await sentimentResponse.json();
+
+    // --- Then, post comment ---
+    const response = await fetch(commentURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userName,
+        comment: writtenComment,
+        productId,
+        sentiment,
+      }),
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      if (Array.isArray(json.error) && json.error.length > 0) {
+        setCommentErr("Comment must not be empty");
+      } else if (json.error) {
+        setCommentErr(json.error);
+      } else {
+        setCommentErr("Something went wrong");
+      }
+      return;
+    }
+
+   
+    setComments((prev) => [
+      ...prev,
+      {
+        _id: json._id,
+        userName,
+        comment: writtenComment,
+        productId,
+        sentiment, 
+      },
+    ]);
+
+    setWrittenComment("");
+    setCommentErr(null);
+
+  } catch (error) {
+    console.error(error);
+    setCommentErr("Something went wrong, could not add comment");
+  }
+};
+
 
   const handleDelete = async (commentId) => {
     try {
@@ -310,13 +322,13 @@ function DetailsPage() {
                 <div key={index} className="pluckd-comment-card">
                   <div className="pluckd-comment-header">
                     <span className="pluckd-comment-author">
-                      {comment.userName}
+                      {comment.userName}{" "}
+                      {comment.sentiment !== "neutral"
+                        ? comment.sentiment === "positive"
+                          ? "😊"
+                          : "😞"
+                        : "🥱"}
                     </span>
-                    {sentiment && (
-                      <span className="pluckd-sentiment-badge">
-                        {sentiment}
-                      </span>
-                    )}
                   </div>
                   <p className="pluckd-comment-text">{comment.comment}</p>
                   {comment.userName === userName && (

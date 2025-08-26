@@ -89,6 +89,11 @@ export default function Navbar() {
                   Search
                 </Link>
               </li>
+               <li className="pluckd-nav-item">
+                <Link className="pluckd-nav-link" to="/app/about">
+                  About
+                </Link>
+              </li>
             </ul>
 
             <div className="pluckd-user-section">

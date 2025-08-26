@@ -32,10 +32,10 @@ router.post(
       return res.status(400).json({ error: errors.array() });
     }
     try {
-      const { userName, comment, productId } = req.body;
+      const { userName, comment, productId,sentiment } = req.body;
       const db = await connectToDatabase();
       const comments = db.collection("comments");
-      const result = await comments.insertOne({ userName, comment, productId });
+      const result = await comments.insertOne({ userName, comment, productId,sentiment });
       res.status(200).json({ _id: result.insertedId.toString() });
     } catch (error) {
       logger.error("error");
