@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 //Step 1 - Task 1
 import { urlConfig } from "../../config";
 

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { urlConfig } from "../../config";
+
 import { useAppContext } from "../../context/AuthContext";
-import "./Navbar.css"
+import "./Navbar.css";
 
 export default function Navbar() {
   const { isLoggedIn, setIsLoggedIn, userName, setUserName } = useAppContext();
@@ -24,21 +24,22 @@ export default function Navbar() {
   }, [isLoggedIn, setIsLoggedIn, setUserName]);
 
   useEffect(() => {
-  const navContent = document.querySelector(".pluckd-nav-content");
-  const navLinks = document.querySelectorAll(".pluckd-nav-content a");
+    const navContent = document.querySelector(".pluckd-nav-content");
+    const navLinks = document.querySelectorAll(".pluckd-nav-content a");
 
-  const handleLinkClick = () => {
-    navContent.classList.remove("show");
-  };
+    const handleLinkClick = () => {
+      navContent.classList.remove("show");
+    };
 
-  navLinks.forEach(link => link.addEventListener("click", handleLinkClick));
+    navLinks.forEach((link) => link.addEventListener("click", handleLinkClick));
 
-  return () => {
-    navLinks.forEach(link => link.removeEventListener("click", handleLinkClick));
-  };
-}, []);
+    return () => {
+      navLinks.forEach((link) =>
+        link.removeEventListener("click", handleLinkClick)
+      );
+    };
+  }, []);
 
-  
   const handleLogout = () => {
     sessionStorage.removeItem("auth-token");
     sessionStorage.removeItem("name");
@@ -46,7 +47,7 @@ export default function Navbar() {
     setIsLoggedIn(false);
     navigate(`/app`);
   };
-  
+
   const profileSection = () => {
     navigate(`/app/profile`);
   };
@@ -89,7 +90,7 @@ export default function Navbar() {
                   Search
                 </Link>
               </li>
-               <li className="pluckd-nav-item">
+              <li className="pluckd-nav-item">
                 <Link className="pluckd-nav-link" to="/app/about">
                   About
                 </Link>
@@ -102,25 +103,16 @@ export default function Navbar() {
                   <span className="pluckd-welcome" onClick={profileSection}>
                     Welcome, {userName}
                   </span>
-                  <button
-                    className="pluckd-logout-btn"
-                    onClick={handleLogout}
-                  >
+                  <button className="pluckd-logout-btn" onClick={handleLogout}>
                     Logout
                   </button>
                 </>
               ) : (
                 <>
-                  <Link
-                    className="pluckd-login-btn"
-                    to="/app/login"
-                  >
+                  <Link className="pluckd-login-btn" to="/app/login">
                     Login
                   </Link>
-                  <Link
-                    className="pluckd-register-btn"
-                    to="/app/register"
-                  >
+                  <Link className="pluckd-register-btn" to="/app/register">
                     Register
                   </Link>
                 </>

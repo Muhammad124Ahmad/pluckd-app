@@ -8,15 +8,13 @@ const searchRoutes = require("./routes/searchRoutes");
 const authRoutes = require("./routes/authRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const connectToDatabase = require("./models/db");
-const { loadData } = require("./util/import-mongo/index");
-const sentimentRoutes=require("./routes/sentimentRoutes")
+const sentimentRoutes = require("./routes/sentimentRoutes");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 const port = 3060;
 app.use("/uploads", express.static("uploads"));
-
 
 //adding gift route
 app.use("/api/gifts", giftroutes);
@@ -31,7 +29,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/comment", commentRoutes);
 
 //adding sentiment route
-app.use("/api/sentiment",sentimentRoutes)
+app.use("/api/sentiment", sentimentRoutes);
 
 // Connect to MongoDB; we just do this one time
 connectToDatabase()

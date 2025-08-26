@@ -1,5 +1,4 @@
 const logger = require("../logger");
-const connectToDatabase = require("../models/db");
 const express = require("express");
 
 // Task 1: import the natural library

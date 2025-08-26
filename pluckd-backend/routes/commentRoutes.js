@@ -3,7 +3,7 @@ const connectToDatabase = require("../models/db");
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const { ObjectId, ReturnDocument } = require("mongodb");
+const { ObjectId} = require("mongodb");
 
 router.get("/", async (req, res) => {
   try {

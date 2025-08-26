@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { urlConfig } from "../../config";
 import { useAppContext } from "../../context/AuthContext";
@@ -374,17 +374,47 @@ function MainPage() {
 
       <div className="pluckd-main-container">
         {/* Decorative floral elements */}
-        <svg className="floral-accent floral-top-left" width="120" height="120" viewBox="0 0 120 120" fill="none">
-          <path d="M60 20C65 25 70 35 65 45C70 50 75 55 70 65C65 70 55 65 50 60C45 65 35 70 25 65C20 60 25 50 30 45C25 40 20 30 25 20C30 15 40 20 45 25C50 20 60 15 60 20Z" fill="currentColor" opacity="0.6"/>
-          <circle cx="60" cy="60" r="3" fill="currentColor" opacity="0.8"/>
+        <svg
+          className="floral-accent floral-top-left"
+          width="120"
+          height="120"
+          viewBox="0 0 120 120"
+          fill="none"
+        >
+          <path
+            d="M60 20C65 25 70 35 65 45C70 50 75 55 70 65C65 70 55 65 50 60C45 65 35 70 25 65C20 60 25 50 30 45C25 40 20 30 25 20C30 15 40 20 45 25C50 20 60 15 60 20Z"
+            fill="currentColor"
+            opacity="0.6"
+          />
+          <circle cx="60" cy="60" r="3" fill="currentColor" opacity="0.8" />
         </svg>
 
-        <svg className="floral-accent floral-bottom-right" width="100" height="100" viewBox="0 0 100 100" fill="none">
-          <path d="M50 10C55 15 60 25 55 35C60 40 65 45 60 55C55 60 45 55 40 50C35 55 25 60 15 55C10 50 15 40 20 35C15 30 10 20 15 10C20 5 30 10 35 15C40 10 50 5 50 10Z" fill="currentColor" opacity="0.5"/>
+        <svg
+          className="floral-accent floral-bottom-right"
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+          fill="none"
+        >
+          <path
+            d="M50 10C55 15 60 25 55 35C60 40 65 45 60 55C55 60 45 55 40 50C35 55 25 60 15 55C10 50 15 40 20 35C15 30 10 20 15 10C20 5 30 10 35 15C40 10 50 5 50 10Z"
+            fill="currentColor"
+            opacity="0.5"
+          />
         </svg>
 
-        <svg className="floral-accent floral-mid-left" width="85" height="85" viewBox="0 0 85 85" fill="none">
-          <path d="M42 6C45 10 48 16 45 22C48 25 51 28 48 34C45 37 38 34 35 31C32 34 25 37 18 34C15 31 18 25 21 22C18 19 15 13 18 6C21 3 27 6 30 9C35 6 42 3 42 6Z" fill="currentColor" opacity="0.4"/>
+        <svg
+          className="floral-accent floral-mid-left"
+          width="85"
+          height="85"
+          viewBox="0 0 85 85"
+          fill="none"
+        >
+          <path
+            d="M42 6C45 10 48 16 45 22C48 25 51 28 48 34C45 37 38 34 35 31C32 34 25 37 18 34C15 31 18 25 21 22C18 19 15 13 18 6C21 3 27 6 30 9C35 6 42 3 42 6Z"
+            fill="currentColor"
+            opacity="0.4"
+          />
         </svg>
 
         {/* Decorative dots */}

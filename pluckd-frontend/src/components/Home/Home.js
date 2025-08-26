@@ -1,4 +1,3 @@
-import React from "react";
 import "./Home.css";
 
 function Home() {
@@ -131,7 +130,8 @@ function Home() {
 
         <main className="main-content">
           <p className="description">
-            “The name reflects the act of handpicking something special — because every reused item is more than just stuff, it’s a find.”
+            “The name reflects the act of handpicking something special —
+            because every reused item is more than just stuff, it’s a find.”
           </p>
 
           <a href="/app" className="cta-button">

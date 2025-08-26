@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, json } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./DetailsPage.css";
 import { urlConfig } from "../../config";
 import { useAppContext } from "../../context/AuthContext";
@@ -61,70 +61,66 @@ function DetailsPage() {
   };
 
   const handleComment = async () => {
-  try {
-    const commentURL = `${urlConfig.backendUrl}/api/comment/`;
-    const sentimentURL = `${urlConfig.backendUrl}/api/sentiment/`;
+    try {
+      const commentURL = `${urlConfig.backendUrl}/api/comment/`;
+      const sentimentURL = `${urlConfig.backendUrl}/api/sentiment/`;
 
-    
-    const sentimentResponse = await fetch(sentimentURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sentence: writtenComment }),
-    });
+      const sentimentResponse = await fetch(sentimentURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sentence: writtenComment }),
+      });
 
-    if (!sentimentResponse.ok) {
-      setCommentErr("Failed to analyze sentiment");
-      return;
-    }
-
-    const { sentiment } = await sentimentResponse.json();
-
-    // --- Then, post comment ---
-    const response = await fetch(commentURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userName,
-        comment: writtenComment,
-        productId,
-        sentiment,
-      }),
-    });
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      if (Array.isArray(json.error) && json.error.length > 0) {
-        setCommentErr("Comment must not be empty");
-      } else if (json.error) {
-        setCommentErr(json.error);
-      } else {
-        setCommentErr("Something went wrong");
+      if (!sentimentResponse.ok) {
+        setCommentErr("Failed to analyze sentiment");
+        return;
       }
-      return;
+
+      const { sentiment } = await sentimentResponse.json();
+
+      // --- Then, post comment ---
+      const response = await fetch(commentURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userName,
+          comment: writtenComment,
+          productId,
+          sentiment,
+        }),
+      });
+
+      const json = await response.json();
+
+      if (!response.ok) {
+        if (Array.isArray(json.error) && json.error.length > 0) {
+          setCommentErr("Comment must not be empty");
+        } else if (json.error) {
+          setCommentErr(json.error);
+        } else {
+          setCommentErr("Something went wrong");
+        }
+        return;
+      }
+
+      setComments((prev) => [
+        ...prev,
+        {
+          _id: json._id,
+          userName,
+          comment: writtenComment,
+          productId,
+          sentiment,
+        },
+      ]);
+
+      setWrittenComment("");
+      setCommentErr(null);
+    } catch (error) {
+      console.error(error);
+      setCommentErr("Something went wrong, could not add comment");
     }
-
-   
-    setComments((prev) => [
-      ...prev,
-      {
-        _id: json._id,
-        userName,
-        comment: writtenComment,
-        productId,
-        sentiment, 
-      },
-    ]);
-
-    setWrittenComment("");
-    setCommentErr(null);
-
-  } catch (error) {
-    console.error(error);
-    setCommentErr("Something went wrong, could not add comment");
-  }
-};
-
+  };
 
   const handleDelete = async (commentId) => {
     try {
