@@ -13,7 +13,6 @@ import AddGift from "./components/AddGift/AddGift";
 import Home from "./components/Home/Home";
 import AboutPage from "./components/AboutPage/AboutPage";
 
-
 function App() {
   const location = useLocation();
 
@@ -33,7 +32,6 @@ function App() {
         <Route path="/app/addGift" element={<AddGift></AddGift>}></Route>
         <Route path="/app/about" element={<AboutPage></AboutPage>}></Route>
       </Routes>
-      
     </>
   );
 }
