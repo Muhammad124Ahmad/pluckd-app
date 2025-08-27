@@ -1,5 +1,75 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500&family=Comfortaa:wght@300;400;500;600&family=Nunito:wght@300;400;500;600&display=swap");
 
+.register-link {
+  /* Hyperlink styling */
+  color: #d4a574;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  transition: all 0.2s ease;
+
+  /* Typography */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.register-link:hover {
+  color: #c49660;
+  text-decoration: none;
+}
+
+.register-link:active {
+  color: #b8864d;
+}
+
+.register-link:focus {
+  outline: 2px dotted #d4a574;
+  outline-offset: 2px;
+}
+
+/* Alternative cream colors */
+.register-link-dark {
+  color: #b8864d;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  transition: color 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.register-link-dark:hover {
+  color: #a67c47;
+  text-decoration: none;
+}
+
+/* Light cream version */
+.register-link-light {
+  color: #f5e6d3;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline;
+  transition: color 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.register-link-light:hover {
+  color: #e6d0b3;
+  text-decoration: none;
+}
 .pluckd-register-container {
   background: linear-gradient(135deg, #faf8f5 0%, #f5f2ef 50%, #fdf7f3 100%);
   min-height: 100vh;

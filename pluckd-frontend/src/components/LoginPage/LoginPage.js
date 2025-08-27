@@ -112,7 +112,7 @@ function LoginPage() {
           </button>
 
           <p className="pluckd-register-link">
-            New here? <a href="/app/register">Register Here</a>
+            New here? <button className="register-link" onClick={()=>(navigate('/app/register'))}>Register Here</button>
           </p>
         </div>
       </div>

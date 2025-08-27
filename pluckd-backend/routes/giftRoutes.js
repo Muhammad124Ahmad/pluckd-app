@@ -1,46 +1,55 @@
 /*jshint esversion: 8 */
 const express = require("express");
 const multer = require("multer");
-const path = require("path");
 const connectToDatabase = require("../models/db");
 const logger = require("../logger");
 const { ObjectId } = require("mongodb");
 
 const router = express.Router();
 
-// configure storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // save inside backend/uploads
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // unique name
-  },
-});
+// use memory storage instead of disk
+const upload = multer({ storage: multer.memoryStorage() });
 
-const upload = multer({ storage });
-
+// Fetch all gifts
 router.get("/", async (req, res) => {
   try {
     const db = await connectToDatabase();
-
     const collection = db.collection("gifts");
-
     const gifts = await collection.find({}).toArray();
 
     res.json(gifts);
   } catch (e) {
     logger.error("Error fetching gifts:", e);
-    res.status(500).json({ error: "Internal error - fetching gift" });
+    res.status(500).json({ error: "Internal error - fetching gifts" });
   }
 });
 
+// Serve gift image
+router.get("/image/:id", async (req, res) => {
+  try {
+    const db = await connectToDatabase();
+    const collection = db.collection("gifts");
+
+    const id = req.params.id;
+    const gift = await collection.findOne({ _id: new ObjectId(id) });
+
+    if (!gift || !gift.image || !gift.image.data) {
+      return res.status(404).send("Image not found");
+    }
+
+    res.set("Content-Type", gift.image.contentType);
+    res.send(gift.image.data.buffer); // <-- send binary data
+  } catch (e) {
+    console.error("Error fetching image:", e);
+    res.status(500).json({ error: "Internal error - fetching image" });
+  }
+});
+
+// Fetch gift by ID
 router.get("/:id", async (req, res) => {
   try {
     const db = await connectToDatabase();
-
     const collection = db.collection("gifts");
-
     const id = req.params.id;
 
     const gift = await collection.findOne({ _id: new ObjectId(id) });
@@ -55,16 +64,22 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
+
 // Add a new gift
-router.post("/", upload.single("image"), async (req, res, next) => {
+router.post("/", upload.single("image"), async (req, res) => {
   try {
     const db = await connectToDatabase();
     const collection = db.collection("gifts");
 
     const { userName, name, category, condition, age, description } = req.body;
 
-    // multer puts the uploaded file info in req.file
-    const imagePath = req.file ? req.file.path : null;
+    const fileData = req.file
+      ? {
+          data: req.file.buffer,
+          contentType: req.file.mimetype,
+        }
+      : null;
 
     const gift = await collection.insertOne({
       name,
@@ -73,24 +88,29 @@ router.post("/", upload.single("image"), async (req, res, next) => {
       date_added: new Date().toDateString(),
       age_years: age,
       description,
-      image: imagePath, // store path like "uploads/1692982721234-chair.png"
+      image: fileData,
       userName,
     });
 
     res.status(201).json({
       message: "Gift created successfully",
+      id: gift.insertedId,
     });
   } catch (e) {
     res.status(500).json({ error: "Internal error - product addition" });
   }
 });
 
+// Delete gift
 router.delete("/delete/:productId", async (req, res) => {
   try {
     const db = await connectToDatabase();
     const collection = db.collection("gifts");
     const productId = req.params.productId;
-    const result = await collection.findOneAndDelete({ _id: new ObjectId(productId) });
+
+    const result = await collection.findOneAndDelete({
+      _id: new ObjectId(productId),
+    });
 
     if (!result) {
       logger.error("Product not found-for deletion");
@@ -99,8 +119,8 @@ router.delete("/delete/:productId", async (req, res) => {
         .json({ message: "Product not found-for deletion" });
     }
 
-    logger.info("Succesfully deleted - product");
-    return res.status(200).json({ message: "Succesfully deleted-product" });
+    logger.info("Successfully deleted - product");
+    return res.status(200).json({ message: "Successfully deleted - product" });
   } catch (error) {
     res.status(500).json({ error: "Internal error - product deletion" });
   }

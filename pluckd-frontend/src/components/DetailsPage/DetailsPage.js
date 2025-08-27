@@ -246,7 +246,7 @@ function DetailsPage() {
               {gift.image ? (
                 // Task 5: Display gift image
                 <img
-                  src={`${urlConfig.backendUrl}/${gift.image}`}
+                  src={`${urlConfig.backendUrl}/api/gifts/image/${gift._id}`}
                   alt={gift.name}
                   className="pluckd-product-image"
                 />

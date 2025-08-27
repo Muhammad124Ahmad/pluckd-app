@@ -147,7 +147,7 @@ function RegisterPage() {
           </button>
 
           <p className="pluckd-login-link">
-            Already a member? <a href="/app/login">Login</a>
+            Already a member? <button className="register-link" onClick={()=>(navigate('/app/login'))}>Login</button>
           </p>
         </div>
       </div>

@@ -430,11 +430,11 @@ function MainPage() {
         ) : (
           <div className="pluckd-gifts-grid">
             {gifts.map((gift) => (
-              <div key={gift.id} className="pluckd-gift-card">
+              <div key={gift._id} className="pluckd-gift-card">
                 <div className="pluckd-image-container">
                   {gift.image ? (
                     <img
-                      src={`${urlConfig.backendUrl}/${gift.image}`}
+                      src={`${urlConfig.backendUrl}/api/gifts/image/${gift._id}`}
                       alt={gift.name}
                       className="pluckd-gift-image"
                     />
