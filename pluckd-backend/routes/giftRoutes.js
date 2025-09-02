@@ -73,8 +73,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     const { userName, name, category, condition, age, description } = req.body;
     const numericAge = parseInt(age);
 
-    const fileData = req.file
-      ? {
+    const fileData = req.file ? {
           data: req.file.buffer,
           contentType: req.file.mimetype,
         }
