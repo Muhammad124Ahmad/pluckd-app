@@ -71,6 +71,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     const collection = db.collection("gifts");
 
     const { userName, name, category, condition, age, description } = req.body;
+    const numericAge =parseInt(age)
 
     const fileData = req.file ? {
           data: req.file.buffer,
@@ -83,7 +84,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       category,
       condition,
       date_added: new Date().toDateString(),
-      age_years: age,
+      age_years: numericAge,
       description,
       image: fileData,
       userName,

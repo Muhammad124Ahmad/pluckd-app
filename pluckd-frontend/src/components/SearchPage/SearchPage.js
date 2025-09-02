@@ -11,6 +11,7 @@ function SearchPage() {
   const categories = ["Living", "Bedroom", "Bathroom", "Kitchen", "Office"];
   const conditions = ["New", "Like New", "Older"];
 
+
   useEffect(() => {
     // fetch all products
     const fetchProducts = async () => {
@@ -41,6 +42,7 @@ function SearchPage() {
       category: document.getElementById("categorySelect").value,
       condition: document.getElementById("conditionSelect").value,
     }).toString();
+    console.log(queryParams);
 
     try {
       const response = await fetch(`${baseUrl}${queryParams}`);
@@ -193,7 +195,7 @@ function SearchPage() {
               searchResults.map((product) => (
                 <div key={product.id} className="pluckd-result-card">
                   <img
-                    src={`${urlConfig.backendUrl}/${product.image}`}
+                    src={`${urlConfig.backendUrl}/api/gifts/image/${product._id}`}
                     alt={product.name}
                     className="pluckd-result-image"
                   />

@@ -208,10 +208,10 @@ function AddGift() {
                   required
                 >
                   <option value="Bedroom">Bedroom</option>
-                  <option value="Living Room">Living Room</option>
+                  <option value="Living">Living Room</option>
                   <option value="Kitchen">Kitchen</option>
                   <option value="Office">Office</option>
-                  <option value="Outdoor">Outdoor</option>
+                  <option value="Bathroom">Bathroom</option>
                 </select>
               </div>
 

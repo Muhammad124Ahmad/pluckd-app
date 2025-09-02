@@ -28,8 +28,10 @@ router.get('/', async (req, res, next) => {
         if (req.query.age_years) {
             query.age_years = { $lte: parseInt(req.query.age_years) };
         }
-
+        console.log(query);
+        
         const gifts=await collection.find(query).toArray();
+        console.log(gifts)
 
         res.json(gifts);
     } catch (e) {
